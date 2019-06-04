@@ -1,0 +1,61 @@
+﻿<Window x:Class="JevoisConfig.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:JevoisConfig"
+        xmlns:xceed="http://schemas.xceed.com/wpf/xaml/toolkit"
+        mc:Ignorable="d"
+        Title="Jevois color configurator" Height="538.275" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="7*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <Image x:Name="inimg" MouseLeftButtonDown="OnClick"/>
+        <Image x:Name="outimg" Grid.Column="1" Grid.Row="0"/>
+        <Slider x:Name="Hue" Margin="10,22,10,0" Grid.Row="1" VerticalAlignment="Top" Maximum="255" IsSnapToTickEnabled="True" ValueChanged="ColorSlider_ValueChanged"/>
+        <Slider x:Name="Saturation" Margin="10,40,10,0" Grid.Row="1" VerticalAlignment="Top" Maximum="255" IsSnapToTickEnabled="True" ValueChanged="ColorSlider_ValueChanged"/>
+        <Slider x:Name="Value" Margin="10,58,10,0" Grid.Row="1" VerticalAlignment="Top" Maximum="255" IsSnapToTickEnabled="True" ValueChanged="ColorSlider_ValueChanged"/>
+        <Label Content="Error" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" Margin="10,0,0,0" Grid.Row="1"/>
+        <Rectangle x:Name="colorRec" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="64" Stroke="Black" VerticalAlignment="Top" Width="117" Grid.Column="1" Margin="147,10,0,0" Grid.Row="1" RenderTransformOrigin="-0.051,0.559"/>
+        <TextBlock Text="{Binding Value, ElementName=Hue}"
+            HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="1" Margin="123,22.2,0,0" Grid.Row="1"/>
+        <TextBlock Text="{Binding Value, ElementName=Saturation}"
+            HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="1" Margin="123,41.2,0,0" Grid.Row="1"/>
+        <TextBlock Text="{Binding Value, ElementName=Value}"
+            HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="1" Margin="123,57.2,0,0" Grid.Row="1"/>
+        <xceed:ByteUpDown x:Name="Errorhue" Margin="10,23,0,0" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" Width="97" Height="17" VerticalAlignment="Top" />
+        <xceed:ByteUpDown x:Name="Errorsat" Margin="10,41,0,0" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" Width="97" Height="17" VerticalAlignment="Top" />
+        <xceed:ByteUpDown x:Name="Errorval" Margin="10,59,0,0" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" Width="97" Height="17" VerticalAlignment="Top" />
+        <RichTextBox x:Name="RTB_script" Grid.Column="2" Margin="0,0,-0.4,0">
+            <FlowDocument>
+                <Paragraph>
+                    <Run Text="RichTextBox"/>
+                </Paragraph>
+            </FlowDocument>
+        </RichTextBox>
+        <Button x:Name="BT_color1" Content="Set 1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Grid.Column="2" Margin="19,8,0,0" Grid.Row="1" Click="BT_color1_Click"/>
+        <Button x:Name="BT_color2" Content="Set 2" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Grid.Column="2" Margin="19,32,0,0" Grid.Row="1" Click="BT_color2_Click"/>
+        <Button x:Name="BT_color3" Content="Set 3" HorizontalAlignment="Left" Width="75" Grid.Column="2" Margin="19,56,0,0" Grid.Row="1" Height="19" VerticalAlignment="Top" Click="BT_color3_Click"/>
+        <Button x:Name="BT_restartCap" Content="ReCap" HorizontalAlignment="Left" VerticalAlignment="Top" Width="61" Grid.Column="1" Margin="269,10,0,0" Grid.Row="1" Click="BT_restartCap_Click"/>
+        <CheckBox x:Name="CB_Expo" Content="Auto Exposure" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10.4,0,0" Grid.Row="2" Click="CB_Expo_Click" IsChecked="True"/>
+        <Slider x:Name="Exposure" VerticalAlignment="Top" Margin="121,10.4,10,0" Grid.Row="2" ValueChanged="Exposure_ValueChanged" IsSnapToTickEnabled="True" Maximum="0" Minimum="-13" IsEnabled="False"/>
+        <CheckBox x:Name="CB_Manual" Content="Manual settings" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="15,11.2,0,0" Grid.Row="2" Click="CB_Manual_Click" Grid.Column="1"/>
+        <xceed:ByteUpDown x:Name="hlow" Margin="124,11.2,0,0" Grid.Row="2" HorizontalAlignment="Left" Width="74" Height="18" VerticalAlignment="Top" Cursor="None" IsEnabled="False" Grid.Column="1" />
+        <xceed:ByteUpDown x:Name="slow" Margin="124,29.2,0,0" Grid.Row="2" HorizontalAlignment="Left" Width="74" Height="18" VerticalAlignment="Top" IsEnabled="False" Grid.Column="1" />
+        <xceed:ByteUpDown x:Name="vlow" Margin="124,47.2,0,0" Grid.Row="2" Height="18" VerticalAlignment="Top" HorizontalAlignment="Left" Width="74" IsEnabled="False" Grid.Column="1" />
+        <xceed:ByteUpDown x:Name="hhigh" Margin="247,11.2,0,0" Grid.Row="2" HorizontalAlignment="Left" Width="74" Height="18" VerticalAlignment="Top" IsEnabled="False" Grid.Column="1" />
+        <xceed:ByteUpDown x:Name="shigh" Margin="247,29.2,0,0" Grid.Row="2" HorizontalAlignment="Left" Width="74" Height="18" VerticalAlignment="Top" IsEnabled="False" Grid.Column="1" />
+        <xceed:ByteUpDown x:Name="vhigh" Margin="247,47.2,0,0" Grid.Row="2" Height="18" VerticalAlignment="Top" HorizontalAlignment="Left" Width="74" IsEnabled="False" Grid.Column="1" />
+        <xceed:ByteUpDown x:Name="CamIndex" Height="18" VerticalAlignment="Top" HorizontalAlignment="Left" Width="94" Margin="10,21.2,0,0" Grid.Column="2" Grid.Row="2" ValueChanged="CamIndex_ValueChanged"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,8.2,0,0" TextWrapping="Wrap" Text="Cam Index (multi cam)" VerticalAlignment="Top" Grid.Column="2" Grid.Row="2" FontSize="10"/>
+
+    </Grid>
+</Window>

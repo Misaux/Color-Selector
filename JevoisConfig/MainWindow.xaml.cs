@@ -48,13 +48,14 @@ namespace JevoisConfig
             TextRange textRange = new TextRange(RTB_script.Document.ContentStart, RTB_script.Document.ContentEnd);
             textRange.Text = "";
 
-            cap = new VideoCapture(0);
+            cap = new VideoCapture("test.mp4");
             int Codec = FourCC.MRLE; //Latency 64ms en 640-360 (plus haut pas possible)
             cap.SetCaptureProperty(CapProp.FourCC, Codec);
 
             cap.SetCaptureProperty(CapProp.AutoExposure, 1);
             cap.SetCaptureProperty(CapProp.FrameWidth, 640);
             cap.SetCaptureProperty(CapProp.FrameHeight, 360);
+            cap.SetCaptureProperty(CapProp.Fps, 24);
 
             //On enregistre l'event image capturée
             cap.ImageGrabbed += ProcessFrame;
@@ -91,6 +92,7 @@ namespace JevoisConfig
                         inimg.Source = Convert(imgOriginal.Bitmap);
                         Mat imgThreshCalibr = ColorCalibration(imgOriginal, imageHSV);
                         outimg.Source = Convert(imgThreshCalibr.Bitmap);
+                        CvInvoke.WaitKey((int)(1000.0 / cap.GetCaptureProperty(CapProp.Fps)));
                     }
                 };
 
